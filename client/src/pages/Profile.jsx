@@ -57,24 +57,29 @@ export default function Profile() {
   useEffect(() => {
     let errorTimeout;
     let successTimeout;
-
+  
     if (fileUploadError) {
       errorTimeout = setTimeout(() => {
         setFileUploadError(false);
       }, 2000); // 2 seconds in milliseconds
     }
-
+  
     if (filePerc === 100) {
       successTimeout = setTimeout(() => {
         setFilePerc(0);
-      }, 1500); // 2 seconds in milliseconds
+        // Show success message after 1 second
+        setTimeout(() => {
+          setUploadSuccess(true);
+        }, 2000); // 1 second in milliseconds
+      }, 2000); // 2 seconds in milliseconds
     }
-
+  
     return () => {
       clearTimeout(errorTimeout);
       clearTimeout(successTimeout);
     };
   }, [fileUploadError, filePerc]);
+  
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
