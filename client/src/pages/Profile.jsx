@@ -34,7 +34,7 @@ export default function Profile() {
   // request.resource.contentType.matches('image/.*')
 
   useEffect(() => {
-    if (file) {
+    if (file) { 
       handleFileUpload(file);
     }
   }, [file]);
